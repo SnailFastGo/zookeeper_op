@@ -16,6 +16,10 @@ import com.zk.utils.StaticVar;
 import org.apache.zookeeper.Watcher.Event.EventType;
 import org.apache.zookeeper.Watcher.Event.KeeperState;
 
+/** 以异步的方式获取子节点
+ * @author snailfast
+ *
+ */
 public class GetCildrenASyc implements Watcher{
 	private static CountDownLatch connectedSemaphore = new CountDownLatch(1);
 	private static ZooKeeper zookeeper = null;
@@ -35,13 +39,13 @@ public class GetCildrenASyc implements Watcher{
 		if(KeeperState.SyncConnected == event.getState()){
 			if(EventType.None == event.getType() && null == event.getPath()){
 				connectedSemaphore.countDown();
-			}
-		}else if(EventType.NodeChildrenChanged == event.getType()){
-			try {
-				List<String> children = zookeeper.getChildren(event.getPath(), true);
-				System.out.println(children);
-			} catch (KeeperException | InterruptedException e) {
-				e.printStackTrace();
+			}else if(EventType.NodeChildrenChanged == event.getType()){
+				try {
+					List<String> children = zookeeper.getChildren(event.getPath(), true);
+					System.out.println(children);
+				} catch (KeeperException | InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
