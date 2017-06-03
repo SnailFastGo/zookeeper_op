@@ -5,6 +5,10 @@ import org.apache.zookeeper.ZooDefs.Ids;
 
 import com.zk.utils.StaticVar;
 
+/**利用ZkClient递归创建和删除节点
+ * @author snailfast
+ *
+ */
 public class CreateAndDeleteNode {
 	public static void main(String[] args) {
 		ZkClient  zkClient = new ZkClient(StaticVar.connectString, StaticVar.sessionTimeout);

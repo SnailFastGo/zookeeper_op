@@ -8,7 +8,7 @@ import com.zk.utils.StaticVar;
  * @author snailfast
  *
  */
-public class CreateZKClient {
+public class CreateZkClient {
 	public static void main(String[] args) {
 		ZkClient  zkClient = new ZkClient(StaticVar.connectString, StaticVar.sessionTimeout);
 		System.out.println("Zookeeper session has established");
