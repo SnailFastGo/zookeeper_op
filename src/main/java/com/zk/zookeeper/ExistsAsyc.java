@@ -68,6 +68,7 @@ class IStatCallback implements StatCallback{
 
 	@Override
 	public void processResult(int rc, String path, Object ctx, Stat stat) {
+		// 节点存在时，返回rc为0，节点不存在时，返回rc为 -110，个人感觉有点问题，待后续验证
 		System.out.println("return code: " + rc + "  return path: " + path + " return ctx: " + ctx + "  stat: " + stat);
 	}
 	
