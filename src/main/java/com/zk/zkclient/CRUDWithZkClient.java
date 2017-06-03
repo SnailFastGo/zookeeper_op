@@ -5,11 +5,11 @@ import org.apache.zookeeper.ZooDefs.Ids;
 
 import com.zk.utils.StaticVar;
 
-/**利用ZkClient递归创建和删除节点
+/**利用ZkClient递归创建、删除节点以及写入和读取节点数据
  * @author snailfast
  *
  */
-public class CreateAndDeleteNode {
+public class CRUDWithZkClient {
 	public static void main(String[] args) {
 		ZkClient  zkClient = new ZkClient(StaticVar.connectString, StaticVar.sessionTimeout);
 		System.out.println("Zookeeper session has established");
