@@ -26,7 +26,10 @@ public class GetDataSyc implements Watcher{
 		zookeeper = new ZooKeeper(StaticVar.connectString, StaticVar.sessionTimeout, new GetDataSyc());
 		connectedSemaphore.await();
 		String path = "/zk-test-persistent";
-		byte[] data = zookeeper.getData(path, new GetDataAsyc(), stat);
+		byte[] data = zookeeper.getData(path, true, stat);
+		System.out.println(new String(data));
+		zookeeper.setData(path, "hello world".getBytes(), -1);
+		data = zookeeper.getData(path, true, stat);
 		System.out.println(new String(data));
 		zookeeper.close();
 	}
@@ -37,13 +40,13 @@ public class GetDataSyc implements Watcher{
 		if(KeeperState.SyncConnected == event.getState()){
 			if(EventType.None == event.getType() && null == event.getPath()){
 				connectedSemaphore.countDown();
-			}
-		}else if(EventType.NodeDataChanged == event.getType()){
-			try {
-				byte[] data = zookeeper.getData(event.getPath(), new GetDataAsyc(), stat);
-				System.out.println(new String(data));
-			} catch (KeeperException | InterruptedException e) {
-				e.printStackTrace();
+			}else if(EventType.NodeDataChanged == event.getType()){
+				try {
+					byte[] data = zookeeper.getData(event.getPath(), true, stat);
+					System.out.println(new String(data));
+				} catch (KeeperException | InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
