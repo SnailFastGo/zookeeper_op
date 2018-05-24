@@ -1,7 +1,7 @@
 package com.zk.utils;
 
 public class StaticVar {
-	public static final String connectString = "127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183";
+	public static final String connectString = "172.24.8.31:2181,172.24.8.33:2182,172.24.8.35:2183";
 	
 	public static final int sessionTimeout = 5000;
 	

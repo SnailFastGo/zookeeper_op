@@ -15,10 +15,10 @@ public class CRUDWithZkClient {
 		System.out.println("Zookeeper session has established");
 		
 		//定义节点路径
-		String path = "/zkclient/test";
+		String path = "/lock";
 		
 		//定义节点数据
-		String data = "hello world";
+		String data = "1";
 		
 		//递归创建节点
 		zkClient.createPersistent(path, true, Ids.OPEN_ACL_UNSAFE);
